@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orçamento - Natura Manauara Shopping</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div id="orcamento">
+    <header>
+      <div>
+        <img src="img/naturalogo.jpeg" alt="Logomarca" class="logo" />
+        <h1>Orçamento: <input type="text" id="nome-orcamento" value="Nome da Empresa" /></h1>
+        <p>Data: <span id="data-atual"></span></p>
+        <p>Validade do Orçamento: <input type="text" id="validade-orcamento" placeholder="Ex: 10 dias úteis" /></p>
+      </div>
+    </header>
+
+    <section>
+      <h2>Dados da Empresa Vendedora</h2>
+      <p>Empresa: Natura Comercial Ltda.</p>
+      <p>CNPJ: 24.276.833/0112-63</p>
+      <p>Endereço: Avenida Mário Ypiranga, 1300L – Manaus/AM – Brasil</p>
+      <p>CEP: 69057-002</p>
+      <p>Telefone: (92) 99278-5611</p>
+      <p>E-mail: lojamanauara.am@natura.net</p>
+    </section>
+
+    <section>
+      <h2>Dados Bancários para Depósitos</h2>
+      <p><strong>Banco Itaú</strong> - Agência: 0912 Conta Corrente: 02565-7</p>
+      <p><strong>Banco do Brasil</strong> - Agência: 3400-2 Conta Corrente: 5704-5</p>
+      <p><strong>Bradesco</strong> - Agência: 2372 Conta Corrente: 34959-3</p>
+      <p><strong>Santander</strong> - Agência: 2271 Conta Corrente: 13080087-5</p>
+    </section>
+
+    <section>
+      <h2>Itens Orçados (todos os itens abaixo são inputs)</h2>
+      <table id="tabela-itens">
+        <thead>
+          <tr>
+            <th>Cód.</th>
+            <th>Descr.</th>
+            <th>Qtde.</th>
+            <th>Preço Unit.</th>
+            <th>Total</th>
+            <th>% Desc.</th>
+            <th>Total c/ Desc.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" placeholder="Código" oninput="calcularTotais()"></td>
+            <td><input type="text" placeholder="Descrição" oninput="calcularTotais()"></td>
+            <td><input type="text" placeholder="Qtd." oninput="calcularTotais()"></td>
+            <td><input type="text" placeholder="R$" oninput="calcularTotais()"></td>
+            <td><input type="text" placeholder="R$" readonly></td>
+            <td><input type="text" placeholder="%" oninput="calcularTotais()"></td>
+            <td><input type="text" placeholder="R$" readonly></td>
+          </tr>
+        </tbody>
+      </table>
+      <button onclick="adicionarLinha()" class="btn-acao">Adicionar Linha</button>
+    </section>
+
+    <div id="totais">
+      <p>Total cheio: <span id="total-cheio">R$ 0,00</span></p>
+      <p>Total com desconto a pagar: <span id="total-desconto">R$ 0,00</span></p>
+    </div>
+
+    <section>
+      <h2>Condição de Pagamento</h2>
+      <p>À vista via transferência bancária</p>
+      <p>Parcelamento em até 10x sem juros no cartão de crédito</p>
+    </section>
+
+    <section>
+      <h2>Prazo de Entrega</h2>
+      <input type="text" id="prazo-entrega" value="01/05/2025 após a confirmação do pagamento." />
+    </section>
+
+    <section>
+      <h2>Observações</h2>
+      <p>Este orçamento é válido por até 10 dias úteis a partir da data de emissão.</p>
+      <p>Após a transferência bancária, responder o email enviando o comprovante.</p>
+    </section>
+  </div>
+
+  <div class="acoes">
+    <button onclick="salvarBackup()" class="btn-acao">Salvar Backup</button>
+    <button onclick="carregarBackup()" class="btn-acao">Carregar Backup</button>
+    <button onclick="exportarParaPDF()" class="btn-exportar">Exportar para PDF</button>
+    <button onclick="limparDados()" class="btn-acao">Limpar Dados</button>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
